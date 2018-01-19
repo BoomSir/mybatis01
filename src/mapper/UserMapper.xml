@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射接口-->
+<mapper namespace="mapper.UserMapper">
+  <!--映射接口方法-->
+  <!-- 查询单个 -->
+  <select id="selectById" parameterType="java.lang.Integer" resultType="model.User">
+  	select * from user where id= #{id}
+  </select>
+  <!-- 查询多个 -->
+  <select id="selectAll" resultType="model.User">
+  	select * from user
+  </select>
+  <!-- 插入 -->
+  <insert id="insert" parameterType="model.User">
+  	insert into user(id,username,password,phone)
+  	values(#{id},#{username},#{password},#{phone})
+  </insert>
+  <!-- 删除 -->
+  <delete id="delete" parameterType="java.lang.Integer">
+  	delete from user where id=#{id}
+  </delete>
+  <!-- 改 -->
+  <update id="update" parameterType="model.User">
+  	update user set username=#{username},password=#{password},phone=#{phone}
+  	where id=#{id}
+  </update>
+</mapper>
