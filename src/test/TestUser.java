@@ -20,11 +20,13 @@ public class TestUser {
 		User user = ser.selectById(1);
 		System.out.println(user.getUsername()+","+user.getPassword());
 	}
+	
 	@Test
 	public void selectAll() {
 		List<User> users = ser.selectAll();
 		System.out.println(users);
 	}
+	
 	@Test
 	public void insert() {
 		User user=new User();
@@ -43,8 +45,10 @@ public class TestUser {
 		user.setPhone("5453");
 		ser.modify(user);
 	}
+	
 	@Test
 	public void delete() {
 		ser.remove(10);
 	}
+	
 }

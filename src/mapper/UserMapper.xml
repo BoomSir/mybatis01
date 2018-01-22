@@ -6,15 +6,20 @@
 <mapper namespace="mapper.UserMapper">
   <!--映射接口方法-->
   <!-- 查询单个 -->
-  <select id="selectById" parameterType="java.lang.Integer" resultType="model.User">
+  <select id="selectById" parameterType="java.lang.Integer" resultType="User">
   	select * from user where id= #{id}
   </select>
   <!-- 查询多个 -->
-  <select id="selectAll" resultType="model.User">
+  <select id="selectAll" resultType="User">
   	select * from user
   </select>
+  
+  <select id="selectByLike" parameterType="User" resultType="User">
+  	select * from user where username like '%${username}%'
+  </select>
+  
   <!-- 插入 -->
-  <insert id="insert" parameterType="model.User">
+  <insert id="insert" parameterType="User">
   	insert into user(id,username,password,phone)
   	values(#{id},#{username},#{password},#{phone})
   </insert>
@@ -23,7 +28,7 @@
   	delete from user where id=#{id}
   </delete>
   <!-- 改 -->
-  <update id="update" parameterType="model.User">
+  <update id="update" parameterType="User">
   	update user set username=#{username},password=#{password},phone=#{phone}
   	where id=#{id}
   </update>

@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.User;
-import service.UserService;
 import service.UserService2;
 
 public class TestUser2 {
@@ -47,5 +46,12 @@ public class TestUser2 {
 	@Test
 	public void delete() {
 		ser.remove(10);
+	}
+	@Test
+	public void selectByLike() {
+		User user=new User();
+		user.setUsername("j");
+		List<User> users=ser.findByLike(user);
+		System.out.println(users);
 	}
 }

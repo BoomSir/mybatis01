@@ -3,6 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+<!-- 加载properties -->
+<properties resource="tools/db.properties">
+	<property name="username" value="root"/>
+	<property name="password" value="password"/>
+</properties>
+<typeAliases>
+	<typeAlias type="model.User" alias="User"/>
+</typeAliases>
+
   <environments default="development">
   	<!--默认连接环境-->
     <environment id="development">
@@ -10,15 +19,18 @@
       <transactionManager type="JDBC"/>
       <!--数据源配置-->
       <dataSource type="POOLED">
-        <property name="driver" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/javaee"/>
-        <property name="username" value="root"/>
-        <property name="password" value="123"/>
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+        <property name="poolMaximumActiveConnections" value="100"/>
       </dataSource>
     </environment>
   </environments>
+  
  <mappers>
   	<!-- 加载mapper文件 -->
-    <mapper resource="mapper/UserMapper.xml"/>
+    <!-- <mapper resource="mapper/UserMapper.xml"/> -->
+    <mapper class="mapper.UserMapper"/>
   </mappers> 
 </configuration>

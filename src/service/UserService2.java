@@ -82,4 +82,17 @@ public class UserService2 {
 			session.close();
 		}
 	}
+	public List<User> findByLike(User user){
+		SqlSession session = sqlSessionFactory.openSession();
+		List<User> users=null;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			users = mapper.selectByLike(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return users;
+	}
 }
